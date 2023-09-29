@@ -19,7 +19,7 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func mainNavigationController() -> UINavigationController {
-    let mainViewController = galleryViewController()
+    let mainViewController = makeGalleryViewController()
     let navigationController = UINavigationController(rootViewController: mainViewController)
     return navigationController
   }
@@ -33,7 +33,7 @@ class AppScopeDependancyContainer: NSObject {
     return pickerVC
   }
   
-  func galleryViewController() -> GalleryViewController {
+  func makeGalleryViewController() -> GalleryViewController {
     return GalleryViewController(imagesRepo)
   }
 }
