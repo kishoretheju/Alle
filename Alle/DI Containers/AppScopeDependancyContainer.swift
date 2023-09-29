@@ -34,10 +34,8 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func galleryViewController() -> GalleryViewController {
-    let pickerVC = pickerViewController()
     return GalleryViewController(nibName: "GalleryViewController",
                                  bundle: nil,
-                                 pickerVC: pickerVC,
                                  imagesRepo: imagesRepo)
   }
 }

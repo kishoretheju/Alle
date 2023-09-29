@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03FD92092AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
+		03FD920A2AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
+		03FD920B2AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
+		03FD920F2AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */; };
+		03FD92102AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */; };
+		03FD92112AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */; };
+		03FD92122AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */; };
+		03FD92132AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */; };
+		03FD92142AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */; };
 		03FE3CA52AC6823800F070B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE3CA42AC6823800F070B2 /* AppDelegate.swift */; };
 		03FE3CA72AC6823800F070B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE3CA62AC6823800F070B2 /* SceneDelegate.swift */; };
 		03FE3CA92AC6823800F070B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE3CA82AC6823800F070B2 /* ViewController.swift */; };
@@ -47,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03FD92082AC6DC6900D31413 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
+		03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		03FE3CA12AC6823800F070B2 /* Alle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FE3CA42AC6823800F070B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03FE3CA62AC6823800F070B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */,
+				03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */,
+			);
+			path = ImageCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		03FE3C982AC6823800F070B2 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +174,7 @@
 		03FE3CD92AC683E000F070B2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -163,6 +185,7 @@
 				03FE3CE32AC69ADC00F070B2 /* GalleryViewController.swift */,
 				03FE3CE42AC69ADC00F070B2 /* GalleryViewController.xib */,
 				03FE3CEB2AC6AD0700F070B2 /* ImagesRepository.swift */,
+				03FD92082AC6DC6900D31413 /* Gallery.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -306,6 +329,7 @@
 			files = (
 				03FE3CB12AC6823A00F070B2 /* LaunchScreen.storyboard in Resources */,
 				03FE3CE82AC69ADC00F070B2 /* GalleryViewController.xib in Resources */,
+				03FD92122AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */,
 				03FE3CAE2AC6823A00F070B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FD92132AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */,
 				03FE3CE92AC69ADC00F070B2 /* GalleryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FD92142AC6E92200D31413 /* ImageCollectionViewCell.xib in Resources */,
 				03FE3CEA2AC69ADC00F070B2 /* GalleryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +361,8 @@
 			files = (
 				03FE3CA92AC6823800F070B2 /* ViewController.swift in Sources */,
 				03FE3CA52AC6823800F070B2 /* AppDelegate.swift in Sources */,
+				03FD920F2AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */,
+				03FD92092AC6DC6900D31413 /* Gallery.swift in Sources */,
 				03FE3CE52AC69ADC00F070B2 /* GalleryViewController.swift in Sources */,
 				03FE3CD62AC6831800F070B2 /* AppScopeDependancyContainer.swift in Sources */,
 				03FE3CA72AC6823800F070B2 /* SceneDelegate.swift in Sources */,
@@ -346,7 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FD92102AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */,
 				03FE3CE62AC69ADC00F070B2 /* GalleryViewController.swift in Sources */,
+				03FD920A2AC6DC6900D31413 /* Gallery.swift in Sources */,
 				03FE3CD72AC6831800F070B2 /* AppScopeDependancyContainer.swift in Sources */,
 				03FE3CBC2AC6823A00F070B2 /* AlleTests.swift in Sources */,
 				03FE3CED2AC6AD0700F070B2 /* ImagesRepository.swift in Sources */,
@@ -360,7 +390,9 @@
 				03FE3CEE2AC6AD0700F070B2 /* ImagesRepository.swift in Sources */,
 				03FE3CC82AC6823A00F070B2 /* AlleUITestsLaunchTests.swift in Sources */,
 				03FE3CE72AC69ADC00F070B2 /* GalleryViewController.swift in Sources */,
+				03FD92112AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */,
 				03FE3CC62AC6823A00F070B2 /* AlleUITests.swift in Sources */,
+				03FD920B2AC6DC6900D31413 /* Gallery.swift in Sources */,
 				03FE3CD82AC6831800F070B2 /* AppScopeDependancyContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

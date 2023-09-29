@@ -9,21 +9,20 @@ import UIKit
 import PhotosUI
 
 class GalleryViewController: UIViewController {
-  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var collectionView: UICollectionView!
+  let cellIdentifier = "cellIdentifier"
   
-  let pickerVC: PHPickerViewController
   let imagesRepo: ImagesRepository
+  var gallery: Gallery? = nil
   
   init(nibName nibNameOrNil: String?,
        bundle nibBundleOrNil: Bundle?,
-       pickerVC: PHPickerViewController,
        imagesRepo: ImagesRepository
   ) {
-    self.pickerVC = pickerVC
     self.imagesRepo = imagesRepo
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     
-    self.pickerVC.delegate = self
+    self.title = "Alle"
   }
   
   required init?(coder: NSCoder) {
@@ -34,24 +33,37 @@ class GalleryViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
-    //    addPickerViewControllerAsChild()
-    loadImages()
+    gallery = imagesRepo.getImages()
+    initialiseCollectionView()
   }
   
-  func addPickerViewControllerAsChild() {
-    addChild(pickerVC)
-    view.addSubview(pickerVC.view)
-    pickerVC.didMove(toParent: self)
+  func initialiseCollectionView() {
+    collectionView.delegate = self
+    collectionView.dataSource = self
+    
+    let customCellNib = UINib(nibName: "ImageCollectionViewCell", bundle: nil)
+    collectionView.register(customCellNib, forCellWithReuseIdentifier: cellIdentifier)
   }
   
-  func loadImages() {
-    let images = imagesRepo.getImages()
-    imageView.image = images[0]
+  func reloadCollectionView() {
+    collectionView.reloadData()
   }
 }
 
-extension GalleryViewController: PHPickerViewControllerDelegate {
-  func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-    
+extension GalleryViewController: UICollectionViewDelegate {
+  
+}
+
+extension GalleryViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ImageCollectionViewCell
+    if let image = gallery?.images[indexPath.row] {
+      cell.imageView.image = image
+    }
+    return cell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return gallery?.images.count ?? 0
   }
 }

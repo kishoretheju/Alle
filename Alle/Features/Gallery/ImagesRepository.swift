@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class ImagesRepository {
-  func getImages() -> [UIImage] {
+  func getImages() -> Gallery {
     let imageNames = ["screenShot1",
                       "screenShot2",
                       "screenShot3",
@@ -25,6 +25,6 @@ class ImagesRepository {
                       "screenShot13",
                       "screenShot14"]
     let images = imageNames.map { UIImage(named: $0) }.compactMap { $0 }
-    return images
+    return Gallery(images: images)
   }
 }
