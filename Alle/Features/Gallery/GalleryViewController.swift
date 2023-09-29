@@ -24,12 +24,9 @@ class GalleryViewController: UIViewController {
   let imagesRepo: ImagesRepository
   var gallery: Gallery? = nil
   
-  init(nibName nibNameOrNil: String?,
-       bundle nibBundleOrNil: Bundle?,
-       imagesRepo: ImagesRepository
-  ) {
+  init(_ imagesRepo: ImagesRepository) {
     self.imagesRepo = imagesRepo
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    super.init(nibName: "GalleryViewController", bundle: nil)
     
     self.title = "Alle"
   }
@@ -60,7 +57,9 @@ class GalleryViewController: UIViewController {
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
-  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print("This is called")
+  }
 }
 
 extension GalleryViewController: UICollectionViewDataSource {

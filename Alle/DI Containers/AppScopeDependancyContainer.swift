@@ -34,8 +34,6 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func galleryViewController() -> GalleryViewController {
-    return GalleryViewController(nibName: "GalleryViewController",
-                                 bundle: nil,
-                                 imagesRepo: imagesRepo)
+    return GalleryViewController(imagesRepo)
   }
 }
