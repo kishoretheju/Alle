@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class Gallery {
-  let images: [UIImage]
+  let images: [Image]
   
-  init(images: [UIImage]) {
+  init(images: [Image]) {
     self.images = images
   }
 }

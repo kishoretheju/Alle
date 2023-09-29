@@ -12,7 +12,7 @@ class ImagesRepository {
   func getImages() -> Gallery {
     let range = 1...29
     let imageNames = range.map { "screenShot\($0)" }
-    let images = imageNames.map { UIImage(named: $0) }.compactMap { $0 }
+    let images = imageNames.map { Image(name: $0) }
     return Gallery(images: images)
   }
 }

@@ -70,7 +70,7 @@ extension GalleryViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ImageCollectionViewCell
     if let image = gallery?.images[indexPath.row] {
-      cell.imageView.image = image
+      cell.imageView.image = UIImage(named: image.name)
     }
     
     return cell
