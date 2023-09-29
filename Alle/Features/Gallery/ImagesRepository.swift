@@ -10,20 +10,8 @@ import UIKit
 
 class ImagesRepository {
   func getImages() -> Gallery {
-    let imageNames = ["screenShot1",
-                      "screenShot2",
-                      "screenShot3",
-                      "screenShot4",
-                      "screenShot5",
-                      "screenShot6",
-                      "screenShot7",
-                      "screenShot8",
-                      "screenShot9",
-                      "screenShot10",
-                      "screenShot11",
-                      "screenShot12",
-                      "screenShot13",
-                      "screenShot14"]
+    let range = 1...29
+    let imageNames = range.map { "screenShot\($0)" }
     let images = imageNames.map { UIImage(named: $0) }.compactMap { $0 }
     return Gallery(images: images)
   }
