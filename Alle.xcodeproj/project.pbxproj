@@ -102,6 +102,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0378025F2AC70ECC005352A4 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				03FE3CEB2AC6AD0700F070B2 /* ImagesRepository.swift */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		037802602AC70EEA005352A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03FD92082AC6DC6900D31413 /* Gallery.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +150,9 @@
 		03FE3CA32AC6823800F070B2 /* Alle */ = {
 			isa = PBXGroup;
 			children = (
+				037802602AC70EEA005352A4 /* Models */,
+				0378025F2AC70ECC005352A4 /* Repos */,
+				03FE3CD92AC683E000F070B2 /* Components */,
 				03FE3CDE2AC6845800F070B2 /* Features */,
 				03FE3CD42AC682F200F070B2 /* DI Containers */,
 				03FE3CA42AC6823800F070B2 /* AppDelegate.swift */,
@@ -184,8 +203,6 @@
 			children = (
 				03FE3CE32AC69ADC00F070B2 /* GalleryViewController.swift */,
 				03FE3CE42AC69ADC00F070B2 /* GalleryViewController.xib */,
-				03FE3CEB2AC6AD0700F070B2 /* ImagesRepository.swift */,
-				03FD92082AC6DC6900D31413 /* Gallery.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -218,7 +235,6 @@
 				03FE3CDC2AC6843C00F070B2 /* ImageInfo */,
 				03FE3CDB2AC6841A00F070B2 /* ImageViewing */,
 				03FE3CDA2AC683F600F070B2 /* Gallery */,
-				03FE3CD92AC683E000F070B2 /* Components */,
 			);
 			path = Features;
 			sourceTree = "<group>";
