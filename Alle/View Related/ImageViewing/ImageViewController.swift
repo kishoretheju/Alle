@@ -33,6 +33,9 @@ class ImageViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    selectedImage.getClassifications { collections, error in
+      print(collections!)
+    }
   }
   
   
