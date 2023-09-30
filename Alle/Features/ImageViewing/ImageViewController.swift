@@ -11,12 +11,18 @@ class ImageViewController: UIViewController {
   let gallery: Gallery
   let selectedIndex: Int
   
+  var selectedImage: Image {
+    get {
+      return gallery.images[selectedIndex]
+    }
+  }
+  
   init(_ gallery: Gallery, selectedIndex index: Int) {
     self.gallery = gallery
     self.selectedIndex = index
     super.init(nibName: "ImageViewController", bundle: nil)
     
-    self.title = "Alle"
+    self.title = selectedImage.creationDate.formatted()
   }
   
   required init?(coder: NSCoder) {

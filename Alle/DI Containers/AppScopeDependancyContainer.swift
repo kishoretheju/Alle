@@ -34,6 +34,10 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func makeGalleryViewController() -> GalleryViewController {
-    return GalleryViewController(imagesRepo)
+    return GalleryViewController(imagesRepo: imagesRepo)
+  }
+  
+  func makeImageViewController(_ gallery: Gallery, selectedIndex index: Int) -> ImageViewController {
+    return ImageViewController(gallery, selectedIndex: index)
   }
 }
