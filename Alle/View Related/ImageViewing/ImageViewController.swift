@@ -42,6 +42,14 @@ class ImageViewController: UIViewController {
     super.init(nibName: "ImageViewController", bundle: nil)
     
     self.title = selectedImage.creationDate.formatted()
+    
+    navigationItem.rightBarButtonItem = ComponentsFactory.infoNavigationButton(forTarget: self,
+                                                                               andAction: #selector(didSelectInfoButton))
+  }
+  
+  @objc
+  func didSelectInfoButton() {
+    
   }
   
   required init?(coder: NSCoder) {
@@ -79,6 +87,8 @@ class ImageViewController: UIViewController {
   func scroll(toIndex index: Int) {
     collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
   }
+  
+  
 }
 
 extension ImageViewController: UICollectionViewDelegate {

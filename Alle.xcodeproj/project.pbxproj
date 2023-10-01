@@ -18,6 +18,8 @@
 		0378026E2AC71997005352A4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378026D2AC71997005352A4 /* Image.swift */; };
 		0378026F2AC71997005352A4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378026D2AC71997005352A4 /* Image.swift */; };
 		037802702AC71997005352A4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378026D2AC71997005352A4 /* Image.swift */; };
+		03A4AEFA2AC937C600E4984A /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */; };
+		03A4AEFC2AC93D5200E4984A /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4AEFB2AC93D5200E4984A /* ColorConstants.swift */; };
 		03D695CB2AC81147003A2962 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D695CA2AC81147003A2962 /* Classification.swift */; };
 		03D695CD2AC81527003A2962 /* OcrError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D695CC2AC81527003A2962 /* OcrError.swift */; };
 		03D695CF2AC81749003A2962 /* ClassificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D695CE2AC81749003A2962 /* ClassificationError.swift */; };
@@ -75,6 +77,8 @@
 		037802652AC7167F005352A4 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		037802662AC7167F005352A4 /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		0378026D2AC71997005352A4 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
+		03A4AEFB2AC93D5200E4984A /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		03D695CA2AC81147003A2962 /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
 		03D695CC2AC81527003A2962 /* OcrError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrError.swift; sourceTree = "<group>"; };
 		03D695CE2AC81749003A2962 /* ClassificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationError.swift; sourceTree = "<group>"; };
@@ -153,6 +157,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		03A4AEFD2AC93D6200E4984A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				03A4AEFB2AC93D5200E4984A /* ColorConstants.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +241,7 @@
 			children = (
 				034AD0FA2AC84409007AF7A0 /* ThumnailCollectionViewCell */,
 				03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */,
+				03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -268,6 +281,7 @@
 		03FE3CDE2AC6845800F070B2 /* View Related */ = {
 			isa = PBXGroup;
 			children = (
+				03A4AEFD2AC93D6200E4984A /* Theme */,
 				03FE3CD92AC683E000F070B2 /* Components */,
 				03FE3CDD2AC6844E00F070B2 /* Collections */,
 				03FE3CDC2AC6843C00F070B2 /* ImageInfo */,
@@ -426,9 +440,11 @@
 				03FE3CE52AC69ADC00F070B2 /* GalleryViewController.swift in Sources */,
 				03FE3CD62AC6831800F070B2 /* AppScopeDependancyContainer.swift in Sources */,
 				03D695CD2AC81527003A2962 /* OcrError.swift in Sources */,
+				03A4AEFC2AC93D5200E4984A /* ColorConstants.swift in Sources */,
 				03FE3CA72AC6823800F070B2 /* SceneDelegate.swift in Sources */,
 				034AD0F82AC84400007AF7A0 /* ThumnailCollectionViewCell.swift in Sources */,
 				03FE3CEC2AC6AD0700F070B2 /* ImagesRepository.swift in Sources */,
+				03A4AEFA2AC937C600E4984A /* ComponentsFactory.swift in Sources */,
 				03D695CB2AC81147003A2962 /* Classification.swift in Sources */,
 				0378026E2AC71997005352A4 /* Image.swift in Sources */,
 			);
