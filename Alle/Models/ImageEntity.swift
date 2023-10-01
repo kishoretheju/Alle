@@ -15,9 +15,10 @@ class ImageEntity {
   let creationDate: Date = Date()
   var ocrTexts: [String]? = nil
   var classifications: [Classification]? = nil
+  var notes: String? = nil
   
   typealias OcrCompletion = (_ ocrTexts: [String]? ,_ error: Error?) -> ()
-  typealias ClassificationsCompletion = (_ collections: [Classification]? ,_ error: Error?) -> ()
+  typealias ClassificationsCompletion = (_ classifications: [Classification]? ,_ error: Error?) -> ()
   
   init(name: String) {
     self.name = name

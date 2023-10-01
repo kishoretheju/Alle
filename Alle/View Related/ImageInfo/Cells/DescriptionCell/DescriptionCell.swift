@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol DescriptionCellDataSource: AnyObject {
+  func descriptionText() -> String
+}
+
 class DescriptionCell: UITableViewCell {
   
   @IBOutlet weak var descriptionLabel: UILabel!
+  weak var dataSource: DescriptionCellDataSource?
   
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    
+    setDescription()
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,4 +29,7 @@ class DescriptionCell: UITableViewCell {
     // Configure the view for the selected state
   }
   
+  func setDescription() {
+    descriptionLabel.text = dataSource?.descriptionText()
+  }
 }

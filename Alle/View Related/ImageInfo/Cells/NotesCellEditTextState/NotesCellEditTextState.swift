@@ -7,9 +7,15 @@
 
 import UIKit
 
+//NotesCellEditTextState
+protocol NotesCellEditTextStateDelegate: AnyObject {
+  func didSelectEdit(forCell cell: NotesCellEditTextState)
+}
+
 class NotesCellEditTextState: UITableViewCell {
   
   @IBOutlet weak var notesLabel: UILabel!
+  weak var delegate: NotesCellEditTextStateDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -23,6 +29,6 @@ class NotesCellEditTextState: UITableViewCell {
   }
   
   @IBAction func didSelectEdit(_ sender: Any) {
-    
+    delegate?.didSelectEdit(forCell: self)
   }
 }

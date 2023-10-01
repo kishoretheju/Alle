@@ -30,6 +30,8 @@
 		03A367B92AC96BF1000D1A37 /* DescriptionCellLoadingState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A367B72AC96BF1000D1A37 /* DescriptionCellLoadingState.xib */; };
 		03A367BC2AC9703C000D1A37 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A367BA2AC9703C000D1A37 /* DescriptionCell.swift */; };
 		03A367BD2AC9703C000D1A37 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A367BB2AC9703C000D1A37 /* DescriptionCell.xib */; };
+		03A367C12AC98C83000D1A37 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A367BF2AC98C83000D1A37 /* TagCollectionViewCell.swift */; };
+		03A367C22AC98C83000D1A37 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A367C02AC98C83000D1A37 /* TagCollectionViewCell.xib */; };
 		03A4AEFA2AC937C600E4984A /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */; };
 		03A4AEFC2AC93D5200E4984A /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4AEFB2AC93D5200E4984A /* ColorConstants.swift */; };
 		03A4AF002AC93F8200E4984A /* ImageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4AEFE2AC93F8200E4984A /* ImageInfoViewController.swift */; };
@@ -105,6 +107,8 @@
 		03A367B72AC96BF1000D1A37 /* DescriptionCellLoadingState.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCellLoadingState.xib; sourceTree = "<group>"; };
 		03A367BA2AC9703C000D1A37 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		03A367BB2AC9703C000D1A37 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		03A367BF2AC98C83000D1A37 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		03A367C02AC98C83000D1A37 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
 		03A4AEFB2AC93D5200E4984A /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		03A4AEFE2AC93F8200E4984A /* ImageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfoViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +238,15 @@
 			path = DescriptionCell;
 			sourceTree = "<group>";
 		};
+		03A367BE2AC98C51000D1A37 /* TagCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				03A367BF2AC98C83000D1A37 /* TagCollectionViewCell.swift */,
+				03A367C02AC98C83000D1A37 /* TagCollectionViewCell.xib */,
+			);
+			path = TagCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		03A4AEFD2AC93D6200E4984A /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +361,7 @@
 		03FE3CD92AC683E000F070B2 /* Common Components */ = {
 			isa = PBXGroup;
 			children = (
+				03A367BE2AC98C51000D1A37 /* TagCollectionViewCell */,
 				034AD0FA2AC84409007AF7A0 /* ThumnailCollectionViewCell */,
 				03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */,
 				03A4AEF92AC937C600E4984A /* ComponentsFactory.swift */,
@@ -519,6 +533,7 @@
 				03A4AF012AC93F8200E4984A /* ImageInfoViewController.xib in Resources */,
 				03A367A92AC96702000D1A37 /* NotesCellAddTextState.xib in Resources */,
 				03FE3CAE2AC6823A00F070B2 /* Assets.xcassets in Resources */,
+				03A367C22AC98C83000D1A37 /* TagCollectionViewCell.xib in Resources */,
 				03A367BD2AC9703C000D1A37 /* DescriptionCell.xib in Resources */,
 				03A367B52AC96A55000D1A37 /* ClassificationsCell.xib in Resources */,
 			);
@@ -553,6 +568,7 @@
 			files = (
 				03A367B82AC96BF1000D1A37 /* DescriptionCellLoadingState.swift in Sources */,
 				03A367A42AC9651A000D1A37 /* NotesCellEditTextState.swift in Sources */,
+				03A367C12AC98C83000D1A37 /* TagCollectionViewCell.swift in Sources */,
 				03FE3CA92AC6823800F070B2 /* ViewController.swift in Sources */,
 				03A367A82AC96702000D1A37 /* NotesCellAddTextState.swift in Sources */,
 				037802672AC7167F005352A4 /* ImageViewController.swift in Sources */,

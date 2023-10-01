@@ -44,7 +44,8 @@ class ImageInfoViewController: UIViewController {
   
   let image: ImageEntity
   
-  var notesCellState = NotesCellUIState.add
+  var notesCellState: NotesCellUIState = .add
+  
   var classificationsCellState = OtherCellUIState.loading
   var descriptionCellState = OtherCellUIState.loading
   
@@ -67,7 +68,37 @@ class ImageInfoViewController: UIViewController {
     navigationItem.leftBarButtonItem = ComponentsFactory.cancelNavigationButton(forTarget: self,
                                                                                 andAction: #selector(didSelectCancelButton))
     
+    initializeNotesCellState()
     initializeTableView()
+    
+    if modelHasClassifications() {
+      classificationsCellState = .normal
+    }
+    else {
+      classificationsCellState = .loading
+      getClassificationsDataAndRefreshView()
+    }
+    
+    if modelHasDescription() {
+      descriptionCellState = .normal
+    }
+    else {
+      descriptionCellState = .loading
+      getDescriptionDataAndRefreshView()
+    }
+  }
+  
+  func initializeNotesCellState() {
+    if let unwrappedNotes = image.notes, unwrappedNotes != "" {
+      if unwrappedNotes == "" {
+        notesCellState = .add
+      }
+      else {
+        notesCellState = .edit
+      }
+    } else {
+      notesCellState = .add
+    }
   }
   
   @objc
@@ -103,6 +134,44 @@ class ImageInfoViewController: UIViewController {
   func nib(forName name: String) -> UINib {
     return UINib(nibName: name, bundle: nil)
   }
+  
+  func modelHasClassifications() -> Bool {
+    return image.classifications != nil
+  }
+  
+  func getClassificationsDataAndRefreshView() {
+    DispatchQueue.global(qos: .userInteractive).async {
+      self.image.getClassifications { classifications, error in
+        guard let _ = classifications else {
+          return
+        }
+        
+        DispatchQueue.main.async {
+          self.classificationsCellState = OtherCellUIState.normal
+          self.tableView.reloadData()
+        }
+      }
+    }
+  }
+  
+  func modelHasDescription() -> Bool {
+    return image.ocrTexts != nil
+  }
+  
+  func getDescriptionDataAndRefreshView() {
+    DispatchQueue.global(qos: .userInteractive).async {
+      self.image.getOcrDescription { ocrTexts, error in
+        guard let _ = ocrTexts else {
+          return
+        }
+        
+        DispatchQueue.main.async {
+          self.descriptionCellState = OtherCellUIState.normal
+          self.tableView.reloadData()
+        }
+      }
+    }
+  }
 }
 
 extension ImageInfoViewController: UITableViewDelegate {
@@ -131,16 +200,97 @@ extension ImageInfoViewController: UITableViewDataSource {
   
   func notesCell(forTableView tableView: UITableView) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: TableViewConstants.NotesCellIdentifiers.allCases[notesCellState.rawValue].rawValue)!
+    
+    if let convertedCell = cell as? NotesCellAddTextState {
+      convertedCell.delegate = self
+    }
+    else if let convertedCell = cell as? NotesCellInputTextState {
+      convertedCell.delegate = self
+      convertedCell.textfield.text = image.notes
+    }
+    else if let convertedCell = cell as? NotesCellEditTextState {
+      convertedCell.notesLabel.text = image.notes
+      convertedCell.delegate = self
+    }
+    
     return cell
   }
   
   func classificationsCell(forTableView tableView: UITableView) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: TableViewConstants.ClassificationsCellIdentifiers.allCases[classificationsCellState.rawValue].rawValue)!
+    
+    if let convertedCell = cell as? ClassificationsCell {
+      convertedCell.dataSource = self
+      convertedCell.showClassifications()
+    }
+    
     return cell
   }
   
   func descriptionCell(forTableView tableView: UITableView) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: TableViewConstants.DescriptionCellIdentifiers.allCases[descriptionCellState.rawValue].rawValue)!
+    if let convertedCell = cell as? DescriptionCell {
+      convertedCell.dataSource = self
+      convertedCell.setDescription()
+    }
     return cell
+  }
+}
+
+extension ImageInfoViewController: ClassificationsCellDataSource {
+  func classificationsTexts() -> [String] {
+    if let classifications = image.classifications {
+      let lastIndex = (classifications.count >= 5) ? 4 : (classifications.count - 1)
+      let filtered = classifications[0...lastIndex]
+      
+      return filtered.map { $0.name }
+    }
+    
+    return []
+  }
+}
+
+extension ImageInfoViewController: DescriptionCellDataSource {
+  func descriptionText() -> String {
+    if let descriptionTexts = image.ocrTexts {
+      return descriptionTexts.reduce("", { partialResult, value in
+        return partialResult + " " + value
+      })
+    }
+    
+    return ""
+  }
+}
+
+extension ImageInfoViewController: NotesCellAddTextStateDelegate {
+  func didSelectAdd() {
+    notesCellState = .input
+    
+    self.tableView.reloadData()
+  }
+}
+
+extension ImageInfoViewController: NotesCellInputTextStateDelegate {
+  func didSelectDone(forCell cell: NotesCellInputTextState, andNote note: String?) {
+    let text = cell.textfield.text
+    
+    if let unwrappedText = text, unwrappedText != "" {
+      notesCellState = .edit
+    }
+    else {
+      notesCellState = .add
+    }
+    
+    image.notes = text
+    
+    self.tableView.reloadData()
+  }
+}
+
+extension ImageInfoViewController: NotesCellEditTextStateDelegate {
+  func didSelectEdit(forCell cell: NotesCellEditTextState) {
+    notesCellState = .input
+    
+    self.tableView.reloadData()
   }
 }

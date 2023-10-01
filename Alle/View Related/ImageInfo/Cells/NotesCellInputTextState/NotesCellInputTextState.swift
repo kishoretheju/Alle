@@ -7,13 +7,20 @@
 
 import UIKit
 
-class NotesCellInputTextState: UITableViewCell {
+protocol NotesCellInputTextStateDelegate: AnyObject {
+  func didSelectDone(forCell cell: NotesCellInputTextState, andNote note: String?)
+}
+
+class NotesCellInputTextState: UITableViewCell, UITextFieldDelegate {
   
   @IBOutlet weak var textfield: UITextField!
+  weak var delegate: NotesCellInputTextStateDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    
+    textfield.delegate = self
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,6 +30,10 @@ class NotesCellInputTextState: UITableViewCell {
   }
   
   @IBAction func didSelectDone(_ sender: Any) {
-    
+    delegate?.didSelectDone(forCell: self, andNote: self.textfield.text)
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    delegate?.didSelectDone(forCell: self, andNote: self.textfield.text)
   }
 }

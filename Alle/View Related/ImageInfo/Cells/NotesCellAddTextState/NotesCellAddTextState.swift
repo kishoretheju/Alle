@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol NotesCellAddTextStateDelegate: AnyObject {
+  func didSelectAdd()
+}
+
 class NotesCellAddTextState: UITableViewCell {
+  weak var delegate: NotesCellAddTextStateDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -21,6 +26,6 @@ class NotesCellAddTextState: UITableViewCell {
   }
   
   @IBAction func didSelectAdd(_ sender: Any) {
-    
+    delegate?.didSelectAdd()
   }
 }
