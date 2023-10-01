@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageEntity.swift
 //  Alle
 //
 //  Created by Kishore Thejasvi M on 29/09/23.
@@ -10,7 +10,7 @@ import UIKit
 import VisionKit
 import Vision
 
-class Image {
+class ImageEntity {
   let name: String
   let creationDate: Date = Date()
   var ocrTexts: [String]? = nil

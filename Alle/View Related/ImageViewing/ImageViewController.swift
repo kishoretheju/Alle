@@ -30,7 +30,7 @@ class ImageViewController: UIViewController {
   let gallery: Gallery
   var selectedIndex: Int
   
-  var selectedImage: Image {
+  var selectedImage: ImageEntity {
     get {
       return gallery.images[selectedIndex]
     }
@@ -49,7 +49,8 @@ class ImageViewController: UIViewController {
   
   @objc
   func didSelectInfoButton() {
-    
+    let vc = AppScopeDependancyContainer.shared.imageInfoNavigationController(selectedImage)
+    present(vc, animated: true)
   }
   
   required init?(coder: NSCoder) {
@@ -60,7 +61,7 @@ class ImageViewController: UIViewController {
     super.viewDidLoad()
     
     setDetailImage()
-    initialiseCollectionView()
+    initializeCollectionView()
     scroll(toIndex: selectedIndex)
   }
   
@@ -68,7 +69,7 @@ class ImageViewController: UIViewController {
     imageView.image = UIImage(named: selectedImage.name)
   }
   
-  func initialiseCollectionView() {
+  func initializeCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
     
@@ -113,6 +114,7 @@ extension ImageViewController: UICollectionViewDataSource {
                                                   for: indexPath) as! ThumnailCollectionViewCell
     let imageData = gallery.images[indexPath.row]
     cell.imageView.image = UIImage(named: imageData.name)
+    cell.shouldHighlight = indexPath.row == selectedIndex
     return cell
   }
   
@@ -128,8 +130,6 @@ extension ImageViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    let sectionInsets = CollectionViewConstants.sectionInsets
-    
     let isSelectedIndex = indexPath.row == selectedIndex
     
     let cellWidth = isSelectedIndex ? CollectionViewConstants.cellWidthSelected : CollectionViewConstants.cellWidth

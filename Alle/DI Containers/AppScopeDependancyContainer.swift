@@ -40,4 +40,15 @@ class AppScopeDependancyContainer: NSObject {
   func makeImageViewController(_ gallery: Gallery, selectedIndex index: Int) -> ImageViewController {
     return ImageViewController(gallery, selectedIndex: index)
   }
+  
+  func imageInfoNavigationController(_ image: ImageEntity) -> UINavigationController {
+    let imageInfoVC = makeImageInfoViewController(image)
+    let nc = UINavigationController(rootViewController: imageInfoVC)
+    nc.navigationBar.barTintColor = UIColor.green
+    return nc
+  }
+  
+  func makeImageInfoViewController(_ image: ImageEntity) -> ImageInfoViewController {
+    return ImageInfoViewController(image)
+  }
 }

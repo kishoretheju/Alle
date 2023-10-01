@@ -40,10 +40,10 @@ class GalleryViewController: UIViewController {
     // Do any additional setup after loading the view.
     
     gallery = imagesRepo.getImages()
-    initialiseCollectionView()
+    initializeCollectionView()
   }
   
-  func initialiseCollectionView() {
+  func initializeCollectionView() {
     collectionView.delegate = self
     collectionView.dataSource = self
     

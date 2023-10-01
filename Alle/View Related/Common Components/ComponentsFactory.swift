@@ -18,4 +18,9 @@ class ComponentsFactory {
                     target: target,
                     action: action)
   }
+  
+  class func cancelNavigationButton(forTarget target: Any,
+                                  andAction action: Selector) -> UIBarButtonItem {
+    return UIBarButtonItem(title: "Cancel", style: .plain, target: target, action: action)
+  }
 }
