@@ -35,7 +35,7 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func makeGalleryViewController() -> GalleryViewController {
-    return GalleryViewController(imagesRepo, databaseRepo)
+    return GalleryViewController(imagesRepo, databaseRepo, makeSyncManager())
   }
   
   func makeImageViewController(_ gallery: Gallery, selectedIndex index: Int) -> ImageViewController {
@@ -52,5 +52,9 @@ class AppScopeDependancyContainer: NSObject {
   func makeImageInfoViewController(_ image: ImageEntity) -> ImageInfoViewController {
     let visionRepo = VisionRepository(databaseRepo)
     return ImageInfoViewController(image, visionRepo, databaseRepo)
+  }
+  
+  func makeSyncManager() -> SyncManager {
+    return SyncManager(databaseRepo: databaseRepo)
   }
 }

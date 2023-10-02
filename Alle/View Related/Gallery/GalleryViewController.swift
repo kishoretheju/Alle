@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import Combine
 
 fileprivate struct CollectionViewLayoutConstants {
   static let sectionInsets = UIEdgeInsets(
@@ -19,6 +20,11 @@ fileprivate struct CollectionViewLayoutConstants {
 
 class GalleryViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var collectionViewTop: NSLayoutConstraint!
+  @IBOutlet weak var pendingLabel: UILabel!
+  @IBOutlet weak var uploadingLabel: UILabel!
+  @IBOutlet weak var autoSyncView: UIView!
+  
   let cellIdentifier = "cellIdentifier"
   
   let imagesRepo: ImagesRepository
@@ -26,11 +32,18 @@ class GalleryViewController: UIViewController {
   
   var gallery: Gallery? = nil
   
+  var isUploading = false
+  let syncManager: SyncManager
+  var subscription: AnyCancellable? = nil
+  var currentSyncStatus: SyncStatus? = nil
+  
   init(_ imagesRepo: ImagesRepository,
-       _ databaseRepo: DatabaseRepository
+       _ databaseRepo: DatabaseRepository,
+       _ syncManager: SyncManager
   ) {
     self.imagesRepo = imagesRepo
     self.databaseRepo = databaseRepo
+    self.syncManager = syncManager
     super.init(nibName: "GalleryViewController", bundle: nil)
     
     self.title = "Alle"
@@ -40,12 +53,60 @@ class GalleryViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
+  deinit {
+    subscription?.cancel()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
     gallery = databaseRepo.getGalleries()[0]
     initializeCollectionView()
+    
+    autoSyncImages()
+  }
+  
+  func autoSyncImages() {
+    if let unwrappedGallery = gallery {
+      let pendingImages = databaseRepo.getAllPendingImageRecords(inGallery: unwrappedGallery)
+      if pendingImages.count > 0 {
+        subscription = syncManager
+          .$status
+          .sink(receiveValue: { value in
+            self.currentSyncStatus = value
+            self.refreshView()
+            print("This is called \(value)")
+          })
+        
+        syncManager.uploadImages(pendingImages)
+      }
+      else {
+        hideSyncProgressView()
+      }
+    }
+  }
+  
+  func refreshView() {
+    if self.currentSyncStatus!.isUploading {
+      showSyncProgressView()
+    }
+    else {
+      hideSyncProgressView()
+    }
+  }
+  
+  func showSyncProgressView() {
+    collectionViewTop.constant = 60
+    autoSyncView.isHidden = false
+    
+    pendingLabel.text = "Pending: \(self.currentSyncStatus?.pendingCount ?? 0)"
+    uploadingLabel.text = "Uploading: \(self.currentSyncStatus?.consideredCount ?? 0)"
+  }
+  
+  func hideSyncProgressView() {
+    collectionViewTop.constant = 0
+    autoSyncView.isHidden = true
   }
   
   func initializeCollectionView() {

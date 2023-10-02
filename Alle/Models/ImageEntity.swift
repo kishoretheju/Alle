@@ -18,6 +18,7 @@ class ImageEntity: Object {
   @Persisted var ocrTexts = List<String>()
   @Persisted var classifications = List<Classification>()
   @Persisted var notes: String? = nil
+  @Persisted var isUploaded = false
   
   convenience init(name: String) {
     self.init()

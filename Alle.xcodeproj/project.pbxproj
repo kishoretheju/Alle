@@ -43,6 +43,8 @@
 		03D695CF2AC81749003A2962 /* ClassificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D695CE2AC81749003A2962 /* ClassificationError.swift */; };
 		03E3CF202ACAAB2A009FAB09 /* DatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3CF1F2ACAAB2A009FAB09 /* DatabaseRepository.swift */; };
 		03E3CF222ACAD770009FAB09 /* VisionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3CF212ACAD770009FAB09 /* VisionRepository.swift */; };
+		03E3CF242ACAFA12009FAB09 /* AutoSyncRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3CF232ACAFA12009FAB09 /* AutoSyncRepo.swift */; };
+		03E3CF272ACAFD78009FAB09 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3CF262ACAFD78009FAB09 /* SyncManager.swift */; };
 		03FD92092AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
 		03FD920A2AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
 		03FD920B2AC6DC6900D31413 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD92082AC6DC6900D31413 /* Gallery.swift */; };
@@ -125,6 +127,8 @@
 		03D695CE2AC81749003A2962 /* ClassificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationError.swift; sourceTree = "<group>"; };
 		03E3CF1F2ACAAB2A009FAB09 /* DatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepository.swift; sourceTree = "<group>"; };
 		03E3CF212ACAD770009FAB09 /* VisionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRepository.swift; sourceTree = "<group>"; };
+		03E3CF232ACAFA12009FAB09 /* AutoSyncRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSyncRepo.swift; sourceTree = "<group>"; };
+		03E3CF262ACAFD78009FAB09 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		03FD92082AC6DC6900D31413 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		03FD920D2AC6E92200D31413 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		03FD920E2AC6E92200D31413 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				03FE3CEB2AC6AD0700F070B2 /* ImagesRepository.swift */,
 				03E3CF1F2ACAAB2A009FAB09 /* DatabaseRepository.swift */,
 				03E3CF212ACAD770009FAB09 /* VisionRepository.swift */,
+				03E3CF232ACAFA12009FAB09 /* AutoSyncRepo.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -308,6 +313,14 @@
 			path = NotesCellInputTextState;
 			sourceTree = "<group>";
 		};
+		03E3CF252ACAFD3A009FAB09 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				03E3CF262ACAFD78009FAB09 /* SyncManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		03FD920C2AC6E8EE00D31413 /* ImageCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +355,7 @@
 		03FE3CA32AC6823800F070B2 /* Alle */ = {
 			isa = PBXGroup;
 			children = (
+				03E3CF252ACAFD3A009FAB09 /* Managers */,
 				037802602AC70EEA005352A4 /* Models */,
 				0378025F2AC70ECC005352A4 /* Repos */,
 				03FE3CDE2AC6845800F070B2 /* View Related */,
@@ -729,6 +743,7 @@
 				03FE3CA52AC6823800F070B2 /* AppDelegate.swift in Sources */,
 				03FD920F2AC6E92200D31413 /* ImageCollectionViewCell.swift in Sources */,
 				03FD92092AC6DC6900D31413 /* Gallery.swift in Sources */,
+				03E3CF242ACAFA12009FAB09 /* AutoSyncRepo.swift in Sources */,
 				03D695CF2AC81749003A2962 /* ClassificationError.swift in Sources */,
 				03FE3CE52AC69ADC00F070B2 /* GalleryViewController.swift in Sources */,
 				03A367B42AC96A55000D1A37 /* ClassificationsCell.swift in Sources */,
@@ -741,6 +756,7 @@
 				03E3CF222ACAD770009FAB09 /* VisionRepository.swift in Sources */,
 				034AD0F82AC84400007AF7A0 /* ThumnailCollectionViewCell.swift in Sources */,
 				03A4AF002AC93F8200E4984A /* ImageInfoViewController.swift in Sources */,
+				03E3CF272ACAFD78009FAB09 /* SyncManager.swift in Sources */,
 				03FE3CEC2AC6AD0700F070B2 /* ImagesRepository.swift in Sources */,
 				03A4AEFA2AC937C600E4984A /* ComponentsFactory.swift in Sources */,
 				03A367BC2AC9703C000D1A37 /* DescriptionCell.swift in Sources */,

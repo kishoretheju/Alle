@@ -54,14 +54,24 @@ class DatabaseRepository {
     return []
   }
   
-  func getAllPendingImageRecords(inGallery gallery: Gallery) -> [ImageEntity] {
-    return []
+  func getAllPendingImageRecords(inGallery gallery: Gallery) -> Results<ImageEntity> {
+    let realm = realmInstance()
+    
+    let images = realm.objects(ImageEntity.self)
+    let pendingImages = images.where { image in
+      return image.isUploaded == false
+    }
+    
+    return pendingImages
   }
   
-  func updateUploadImageStatus(ofImage: ImageEntity,
-                               inGallery gallery: Gallery,
-                               toStatus status: Bool, onCompletion: Completion?) {
+  func updateUploadImageStatus(ofImage image: ImageEntity,
+                               toStatus status: Bool) {
+    let realm = realmInstance()
     
+    try! realm.write {
+      image.isUploaded = status
+    }
   }
   
   func updateOcrTexts(ofImage image: ImageEntity,
