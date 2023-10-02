@@ -6,13 +6,10 @@
 //
 
 import Foundation
-import UIKit
 
-class ImagesRepository {
-  func getImages() -> Gallery {
+class ImagesRepository {  
+  func getImageNames() -> [String] {
     let range = 1...29
-    let imageNames = range.map { "screen\($0)" }
-    let images = imageNames.map { ImageEntity(name: $0) }
-    return Gallery(images: images)
+    return range.map { "screen\($0)" }
   }
 }

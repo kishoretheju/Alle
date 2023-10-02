@@ -43,14 +43,19 @@ class ImageInfoViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   let image: ImageEntity
+  let visionRepo: VisionRepository
+  let databaseRepo: DatabaseRepository
   
   var notesCellState: NotesCellUIState = .add
   
   var classificationsCellState = OtherCellUIState.loading
   var descriptionCellState = OtherCellUIState.loading
   
-  init(_ image: ImageEntity) {
+  init(_ image: ImageEntity, _ visionRepo: VisionRepository,_ databaseRepo: DatabaseRepository) {
     self.image = image
+    self.visionRepo = visionRepo
+    self.databaseRepo = databaseRepo
+    
     super.init(nibName: "ImageInfoViewController", bundle: nil)
     
     self.title = "Info"
@@ -136,40 +141,32 @@ class ImageInfoViewController: UIViewController {
   }
   
   func modelHasClassifications() -> Bool {
-    return image.classifications != nil
+    return image.classifications.count > 0
   }
   
   func getClassificationsDataAndRefreshView() {
-    DispatchQueue.global(qos: .userInteractive).async {
-      self.image.getClassifications { classifications, error in
-        guard let _ = classifications else {
-          return
-        }
-        
-        DispatchQueue.main.async {
-          self.classificationsCellState = OtherCellUIState.normal
-          self.tableView.reloadData()
-        }
+    visionRepo.getClassifications(forImage: image) { classifications, error in
+      guard let _ = classifications else {
+        return
       }
+
+      self.classificationsCellState = OtherCellUIState.normal
+      self.tableView.reloadData()
     }
   }
   
   func modelHasDescription() -> Bool {
-    return image.ocrTexts != nil
+    return image.ocrTexts.count > 0
   }
   
   func getDescriptionDataAndRefreshView() {
-    DispatchQueue.global(qos: .userInteractive).async {
-      self.image.getOcrDescription { ocrTexts, error in
-        guard let _ = ocrTexts else {
-          return
-        }
-        
-        DispatchQueue.main.async {
-          self.descriptionCellState = OtherCellUIState.normal
-          self.tableView.reloadData()
-        }
+    visionRepo.getOcrDescription(forImage: image) { ocrTexts, error in
+      guard let _ = ocrTexts else {
+        return
       }
+      
+      self.descriptionCellState = OtherCellUIState.normal
+      self.tableView.reloadData()
     }
   }
 }
@@ -239,26 +236,27 @@ extension ImageInfoViewController: UITableViewDataSource {
 
 extension ImageInfoViewController: ClassificationsCellDataSource {
   func classificationsTexts() -> [String] {
-    if let classifications = image.classifications {
-      let lastIndex = (classifications.count >= 5) ? 4 : (classifications.count - 1)
-      let filtered = classifications[0...lastIndex]
-      
-      return filtered.map { $0.name }
-    }
+    //    if let classifications = image.classifications {
+    //      let lastIndex = (classifications.count >= 5) ? 4 : (classifications.count - 1)
+    //      let filtered = classifications[0...lastIndex]
+    //
+    //      return filtered.map { $0.name }
+    //    }
     
-    return []
+    let classifications = image.classifications
+    let lastIndex = (classifications.count >= 5) ? 4 : (classifications.count - 1)
+    let filtered = classifications[0...lastIndex]
+    
+    return filtered.map { $0.name }
   }
 }
 
 extension ImageInfoViewController: DescriptionCellDataSource {
   func descriptionText() -> String {
-    if let descriptionTexts = image.ocrTexts {
-      return descriptionTexts.reduce("", { partialResult, value in
-        return partialResult + " " + value
-      })
-    }
-    
-    return ""
+    let descriptionTexts = image.ocrTexts
+    return descriptionTexts.reduce("", { partialResult, value in
+      return partialResult + " " + value
+    })
   }
 }
 
@@ -276,12 +274,12 @@ extension ImageInfoViewController: NotesCellInputTextStateDelegate {
     
     if let unwrappedText = text, unwrappedText != "" {
       notesCellState = .edit
+      
+      databaseRepo.updateNotes(ofImage: image, withNotes: unwrappedText)
     }
     else {
       notesCellState = .add
     }
-    
-    image.notes = text
     
     self.tableView.reloadData()
   }

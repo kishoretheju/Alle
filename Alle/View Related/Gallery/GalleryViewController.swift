@@ -22,10 +22,15 @@ class GalleryViewController: UIViewController {
   let cellIdentifier = "cellIdentifier"
   
   let imagesRepo: ImagesRepository
+  let databaseRepo: DatabaseRepository
+  
   var gallery: Gallery? = nil
   
-  init(imagesRepo repo: ImagesRepository) {
-    self.imagesRepo = repo
+  init(_ imagesRepo: ImagesRepository,
+       _ databaseRepo: DatabaseRepository
+  ) {
+    self.imagesRepo = imagesRepo
+    self.databaseRepo = databaseRepo
     super.init(nibName: "GalleryViewController", bundle: nil)
     
     self.title = "Alle"
@@ -39,7 +44,7 @@ class GalleryViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
-    gallery = imagesRepo.getImages()
+    gallery = databaseRepo.getGalleries()[0]
     initializeCollectionView()
   }
   

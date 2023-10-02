@@ -13,6 +13,7 @@ class AppScopeDependancyContainer: NSObject {
   
   static let shared = AppScopeDependancyContainer()
   let imagesRepo = ImagesRepository()
+  let databaseRepo = DatabaseRepository()
   
   private override init() {
     
@@ -34,7 +35,7 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func makeGalleryViewController() -> GalleryViewController {
-    return GalleryViewController(imagesRepo: imagesRepo)
+    return GalleryViewController(imagesRepo, databaseRepo)
   }
   
   func makeImageViewController(_ gallery: Gallery, selectedIndex index: Int) -> ImageViewController {
@@ -49,6 +50,7 @@ class AppScopeDependancyContainer: NSObject {
   }
   
   func makeImageInfoViewController(_ image: ImageEntity) -> ImageInfoViewController {
-    return ImageInfoViewController(image)
+    let visionRepo = VisionRepository(databaseRepo)
+    return ImageInfoViewController(image, visionRepo, databaseRepo)
   }
 }

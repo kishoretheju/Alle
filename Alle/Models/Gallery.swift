@@ -6,12 +6,9 @@
 //
 
 import Foundation
-import UIKit
+import RealmSwift
 
-class Gallery {
-  let images: [ImageEntity]
-  
-  init(images: [ImageEntity]) {
-    self.images = images
-  }
+class Gallery: Object {
+  @Persisted(primaryKey: true) var _id: ObjectId
+  @Persisted var images = List<ImageEntity>()
 }

@@ -20,6 +20,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(windowScene: windowScene)
     window?.rootViewController = dependancyContainer.mainNavigationController()
     window?.makeKeyAndVisible()
+    
+    if !checkIfGalleryExists() {
+      createGallery()
+    }
+  }
+  
+  func checkIfGalleryExists() -> Bool {
+    let repo = dependancyContainer.databaseRepo
+    let galleries = repo.getGalleries()
+    return galleries.count != 0
+  }
+  
+  func createGallery() {
+    let databaseRepo = dependancyContainer.databaseRepo
+    let gallery = databaseRepo.createGallery()
+    
+    let imagesRepo = dependancyContainer.imagesRepo
+    let imageNames = imagesRepo.getImageNames()
+    
+    databaseRepo.createRecords(ofImages: imageNames, inGallery: gallery)
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
